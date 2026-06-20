@@ -2,126 +2,181 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<title>Album Zhafeer 26 - Flipbook</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+<title>Album Zhafeer 26 — Flipbook</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="turn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body {
-  background: #2c1810;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(ellipse at 50% 30%, #3d2a1f, #1e110c);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
+
 /* ── Header ── */
 .header {
   width: 100%;
-  background: linear-gradient(135deg, #3e2723, #5d4037);
+  background: linear-gradient(135deg, #2c1a12 0%, #4a3022 50%, #2c1a12 100%);
   color: #fff;
-  padding: 6px 10px;
+  padding: 8px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
   flex-shrink: 0;
-  gap: 8px;
-  min-height: 42px;
+  gap: 12px;
+  min-height: 52px;
+  border-bottom: 1px solid rgba(255,215,160,0.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 .header .title {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
   white-space: nowrap;
   flex-shrink: 0;
+  color: #ffd7a0;
 }
 .header .mid-group {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   flex-shrink: 1;
   min-width: 0;
 }
 .header .mid-group button {
-  background: rgba(255,255,255,0.12);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 8px;
+  background: rgba(255,215,160,0.12);
+  color: #ffd7a0;
+  border: 1px solid rgba(255,215,160,0.15);
+  border-radius: 8px;
+  padding: 8px 14px;
   cursor: pointer;
-  font-size: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
   line-height: 1.3;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  min-width: 40px;
+  transition: all 0.2s;
 }
-.header .mid-group button:active { background: rgba(255,255,255,0.25); }
-.header .mid-group button:disabled { opacity: 0.25; }
+.header .mid-group button:hover { background: rgba(255,215,160,0.22); }
+.header .mid-group button:active { transform: scale(0.95); }
+.header .mid-group button:disabled { opacity: 0.25; cursor: default; transform: none; }
 .header .mid-group .page-num {
   display: flex;
   align-items: center;
-  gap: 2px;
-  color: #d7ccc8;
-  font-size: 0.7rem;
+  gap: 4px;
+  color: #c9a87c;
+  font-size: 0.8rem;
+  font-weight: 500;
   white-space: nowrap;
 }
 .header .mid-group .page-num input {
-  width: 36px;
-  padding: 2px;
-  border-radius: 3px;
-  border: none;
+  width: 46px;
+  padding: 5px 4px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,215,160,0.2);
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  outline: none;
+  transition: border 0.2s;
 }
+.header .mid-group .page-num input:focus { border-color: #ffd7a0; }
 .header .right-group {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   flex-shrink: 0;
 }
 .header .right-group button {
-  background: rgba(255,255,255,0.12);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 6px;
+  background: rgba(255,215,160,0.10);
+  color: #c9a87c;
+  border: 1px solid rgba(255,215,160,0.10);
+  border-radius: 8px;
+  padding: 6px 10px;
   cursor: pointer;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   line-height: 1.3;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  min-width: 40px;
+  transition: all 0.2s;
 }
-.header .right-group button:active { background: rgba(255,255,255,0.25); }
+.header .right-group button:hover { background: rgba(255,215,160,0.2); color: #ffd7a0; }
+.header .right-group button:active { transform: scale(0.95); }
 .header .right-group .zlabel {
-  color: #d7ccc8;
-  font-size: 0.65rem;
-  min-width: 28px;
+  color: #c9a87c;
+  font-size: 0.7rem;
+  font-weight: 500;
+  min-width: 36px;
   text-align: center;
 }
-/* ── Book ── */
+.header .toggle-thumb {
+  background: rgba(255,215,160,0.10);
+  color: #c9a87c;
+  border: 1px solid rgba(255,215,160,0.10);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-width: 40px;
+  transition: all 0.2s;
+}
+.header .toggle-thumb:hover { background: rgba(255,215,160,0.2); color: #ffd7a0; }
+.header .toggle-thumb:active { transform: scale(0.95); }
+
+/* ── Book wrap ── */
 #flipbook-wrap {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   overflow: hidden;
   position: relative;
-  transition: transform 0.15s;
-  transform-origin: center center;
   touch-action: none;
+  cursor: grab;
+}
+#flipbook-wrap.panning { cursor: grabbing; }
+#flipbook-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 0.05s linear;
+  transform-origin: 0 0;
+  will-change: transform;
 }
 #flipbook-container {
   perspective: 2000px;
   flex-shrink: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+  filter: drop-shadow(0 8px 40px rgba(0,0,0,0.5)) drop-shadow(0 2px 10px rgba(0,0,0,0.3));
 }
 #flipbook { width: 100%; height: 100%; }
 #flipbook .page {
   width: 100%;
   height: 100%;
   background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.04);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 #flipbook .page img {
   width: 100%;
@@ -130,6 +185,23 @@ html, body {
   display: block;
   pointer-events: none;
 }
+#flipbook .page img.placeholder {
+  opacity: 0.5;
+  filter: blur(10px);
+  transform: scale(1.05);
+}
+#flipbook .page img.loaded {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+}
+
+#flipbook .page:not(.cover-page):not(.back-cover) {
+  background: linear-gradient(135deg, #fefefe 0%, #f5f0eb 100%);
+}
+
+/* ── Cover pages ── */
 .cover-page {
   display: flex;
   flex-direction: column;
@@ -138,58 +210,180 @@ html, body {
   color: #fff;
   text-align: center;
   padding: 30px;
+  position: relative;
+  overflow: hidden;
 }
-/* ── Thumbnail ── */
+.cover-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(255,215,160,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-page .cover-icon {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+}
+.cover-page h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.cover-page .sub {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.cover-page .divider {
+  width: 60px;
+  height: 2px;
+  background: rgba(255,215,160,0.4);
+  margin: 16px 0;
+  border-radius: 2px;
+}
+
+/* ── Thumbnail bar ── */
 .thumbnail-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(44,24,16,0.95);
-  padding: 5px;
+  background: rgba(26,14,10,0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 8px 10px;
   display: flex;
-  gap: 3px;
+  gap: 5px;
   overflow-x: auto;
   z-index: 50;
-  height: 66px;
+  height: 76px;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-top: 1px solid rgba(255,215,160,0.06);
+  transition: transform 0.3s ease;
 }
+.thumbnail-bar.hidden {
+  transform: translateY(100%);
+}
+.thumbnail-bar::-webkit-scrollbar { display: none; }
 .thumbnail-bar img {
-  height: 54px;
+  height: 58px;
   cursor: pointer;
   border: 2px solid transparent;
-  border-radius: 2px;
-  opacity: 0.6;
+  border-radius: 4px;
+  opacity: 0.5;
   flex-shrink: 0;
+  transition: all 0.25s ease;
+  filter: grayscale(0.4);
 }
+.thumbnail-bar img:hover { opacity: 0.85; filter: grayscale(0.1); }
 .thumbnail-bar img.active {
-  border-color: #ff8f00;
+  border-color: #ffb347;
   opacity: 1;
+  filter: grayscale(0);
+  box-shadow: 0 0 12px rgba(255,180,70,0.25);
+}
+
+/* ── Loading ── */
+#loading {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 40%, #3d2a1f, #1e110c);
+  transition: opacity 0.6s ease;
+}
+#loading.hidden { opacity: 0; pointer-events: none; }
+#loading .spinner {
+  width: 44px; height: 44px;
+  border: 3px solid rgba(255,215,160,0.15);
+  border-top-color: #ffd7a0;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#loading p {
+  margin-top: 20px;
+  color: #c9a87c;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* ── Responsive ── */
+@media (prefers-reduced-motion: reduce) {
+  #flipbook .page img.loaded { transition: none; }
+  #flipbook .page { transition: none; }
+  .thumbnail-bar { transition: none; }
+  #loading { transition: none; }
+}
+@media (pointer: coarse) {
+  .header { min-height: 48px; }
+  .header .right-group button,
+  .header .toggle-thumb { padding: 8px 10px; font-size: 0.9rem; min-width: 38px; }
+  .header .right-group .zlabel { font-size: 0.8rem; min-width: 40px; }
+  .thumbnail-bar { height: 72px; }
+  .thumbnail-bar img { height: 54px; }
+}
+@media (max-width: 480px) {
+  .header { padding: 4px 8px; min-height: 44px; gap: 4px; }
+  .header .title { font-size: 0.7rem; }
+  .header .mid-group button { padding: 5px 8px; font-size: 0.8rem; min-width: 32px; }
+  .header .mid-group .page-num input { width: 34px; padding: 4px 2px; font-size: 0.7rem; }
+  .header .right-group button,
+  .header .toggle-thumb { padding: 5px 7px; font-size: 0.75rem; min-width: 32px; }
+  .header .right-group .zlabel { font-size: 0.65rem; min-width: 30px; }
+  .cover-page h2 { font-size: 1.3rem; }
+  .cover-page .cover-icon { font-size: 2.2rem; }
+  .thumbnail-bar { height: 60px; padding: 6px 8px; }
+  .thumbnail-bar img { height: 44px; }
+  .cover-page { padding: 20px; }
+}
+@media (max-width: 360px) {
+  .header .title { display: none; }
+  .header .mid-group .page-num { font-size: 0.7rem; }
+  .header .mid-group .page-num input { width: 30px; }
 }
 </style>
 </head>
 <body>
 
+<div id="loading">
+  <div class="spinner"></div>
+  <p>Memuat album...</p>
+</div>
+
 <div class="header">
-  <span class="title">Zhafeer 26</span>
+  <span class="title">✦ Zhafeer 26</span>
   <div class="mid-group">
-    <button id="prevBtn">&lsaquo;</button>
+    <button id="prevBtn">‹</button>
     <span class="page-num">
       <input type="number" id="pageInput" min="1" max="203" value="1">
-      /<span id="totalLabel">203</span>
+      / <span id="totalLabel">203</span>
     </span>
-    <button id="nextBtn">&rsaquo;</button>
+    <button id="nextBtn">›</button>
   </div>
   <div class="right-group">
-    <button id="zoomOutBtn">A-</button>
+    <button id="zoomOutBtn">A−</button>
     <span class="zlabel" id="zoomLabel">100%</span>
     <button id="zoomInBtn">A+</button>
+    <button class="toggle-thumb" id="toggleThumbBtn">⊞</button>
   </div>
 </div>
 
 <div id="flipbook-wrap">
-  <div id="flipbook-container">
-    <div id="flipbook"></div>
+  <div id="flipbook-inner">
+    <div id="flipbook-container">
+      <div id="flipbook"></div>
+    </div>
   </div>
 </div>
 
@@ -198,19 +392,38 @@ html, body {
 <script>
 var TOTAL_PAGES = 203;
 var flipbook = $('#flipbook');
-var currentUserPage = 1;
+var currentUserPage = 0;
 var zoomLevel = 1;
 var MIN_ZOOM = 0.2, MAX_ZOOM = 4, ZOOM_STEP = 0.15;
+var panX = 0, panY = 0;
+var extraPanX = 0, extraPanY = 0;
+var isMobile = window.innerWidth < 768;
+var thumbVisible = true;
+var resizeRAF;
 
 function imgSrc(n) {
   return 'pages/page-' + String(n).padStart(3, '0') + '.jpg';
 }
 
+function preloadAround(p) {
+  var start = Math.max(1, p - 2);
+  var end = Math.min(TOTAL_PAGES, p + 3);
+  for (var i = start; i <= end; i++) {
+    var img = new Image();
+    img.src = imgSrc(i);
+  }
+}
+
+function getDisplayPage(u) {
+  return u === 0 ? 1 : u;
+}
+
 function calcBookSize() {
-  var hh = document.querySelector('.header').offsetHeight || 42;
-  var th = 66;
-  var aw = window.innerWidth - 10;
-  var ah = window.innerHeight - hh - th - 10;
+  var hh = document.querySelector('.header').offsetHeight || 48;
+  var tb = document.getElementById('thumbBar');
+  var th = tb.classList.contains('hidden') ? 0 : (tb.offsetHeight || 76);
+  var aw = window.innerWidth - 12;
+  var ah = window.innerHeight - hh - th - 12;
   var pr = 842.25 / 595.5;
   var sr = 2 / pr;
   var bw = ah * sr, bh = ah;
@@ -218,19 +431,29 @@ function calcBookSize() {
   return { width: Math.round(bw), height: Math.round(bh) };
 }
 
+function centerBook() {
+  var s = calcBookSize();
+  var wr = wrap.getBoundingClientRect();
+  panX = Math.round((wr.width - s.width * zoomLevel) / 2);
+  panY = Math.round((wr.height - s.height * zoomLevel) / 2);
+}
+
 function resizeBook() {
   if (!flipbook.data().done) return;
   var s = calcBookSize();
   $('#flipbook-container').css({ width: s.width, height: s.height });
   flipbook.turn('size', s.width, s.height);
+  centerBook();
+  clampPan();
+  updateTransform();
 }
 
 function build() {
   var h = '';
-  h += '<div class="page cover-page" style="background:linear-gradient(135deg,#5d4037,#2c1810)"><div><h2 style="font-size:2rem;margin-bottom:15px">Album Zhafeer 26</h2><p style="opacity:0.8">Album Kenangan</p></div></div>';
+  h += '<div class="page cover-page" style="background:linear-gradient(145deg,#4a3022,#1e110c)"><div class="cover-icon">📖</div><h2>Album Zhafeer 26</h2><div class="divider"></div><span class="sub">Album Kenangan</span></div>';
   for (var i = 1; i <= TOTAL_PAGES; i++)
-    h += '<div class="page"><img src="' + imgSrc(i) + '" alt="Hal ' + i + '"></div>';
-  h += '<div class="page cover-page" style="background:linear-gradient(135deg,#2c1810,#5d4037)"><div><h2 style="font-size:2rem;margin-bottom:15px">Album Zhafeer 26</h2><p style="opacity:0.8">Terima Kasih</p></div></div>';
+    h += '<div class="page"><img src="' + imgSrc(i) + '" alt="Hal ' + i + '" loading="lazy" onerror="this.style.display=\'none\'"></div>';
+  h += '<div class="page cover-page back-cover" style="background:linear-gradient(145deg,#1e110c,#4a3022)"><div class="cover-icon">❤️</div><h2>Album Zhafeer 26</h2><div class="divider"></div><span class="sub">Terima Kasih</span></div>';
   flipbook.html(h);
 }
 
@@ -241,165 +464,304 @@ function initFB() {
     width: s.width,
     height: s.height,
     autoCenter: true,
-    duration: 600,
-    gradients: true,
+    duration: isMobile ? 350 : 600,
+    gradients: !isMobile,
     acceleration: true,
-    elevation: 50,
-    cornerSize: 0,
+    elevation: isMobile ? 20 : 50,
+    cornerSize: isMobile ? 40 : 80,
     pages: TOTAL_PAGES + 2,
     when: {
+      turning: function(e, page, view) {
+        wrap.style.cursor = 'default';
+      },
       turned: function(e, page) {
-        var u = page - 1;
-        if (u < 1) u = 1;
-        if (u > TOTAL_PAGES) u = TOTAL_PAGES;
-        currentUserPage = u;
-        $('#pageInput').val(u);
-        updateUI(u);
+        currentUserPage = page <= 1 ? 0 : Math.min(page - 1, TOTAL_PAGES);
+        var display = getDisplayPage(currentUserPage);
+        $('#pageInput').val(display);
+        updateUI(currentUserPage);
+        wrap.style.cursor = 'grab';
+        if (isMobile && thumbVisible && page > 1) {
+          thumbVisible = false;
+          $('#thumbBar').addClass('hidden');
+          $('#toggleThumbBtn').text('⊟');
+          setTimeout(function() { resizeBook(); }, 100);
+        }
       }
     }
   });
 
-  // Matikan touch bawaan turn.js biar gak konflik
-  flipbook.unbind('touchstart');
-  $(document).unbind('touchmove').unbind('touchend');
+  centerBook();
+  applyZoom();
 
-  flipbook.turn('page', 2);
-  currentUserPage = 1;
+  flipbook.turn('page', 1);
+  currentUserPage = 0;
   $('#pageInput').val(1);
-  updateUI(1);
+  updateUI(0);
 }
 
 function updateUI(u) {
-  $('#prevBtn').prop('disabled', u <= 1);
+  var display = getDisplayPage(u);
+  $('#prevBtn').prop('disabled', u <= 0);
   $('#nextBtn').prop('disabled', u >= TOTAL_PAGES);
   $('#thumbBar img').removeClass('active');
-  $('#thumbBar img[data-page="' + u + '"]').addClass('active');
-  var el = $('#thumbBar img[data-page="' + u + '"]')[0];
+  var thumbPage = Math.max(1, u);
+  $('#thumbBar img[data-page="' + thumbPage + '"]').addClass('active');
+  var el = $('#thumbBar img[data-page="' + thumbPage + '"]')[0];
   if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
 
 function goto(u) {
-  if (u < 1) u = 1;
+  if (u < 0) u = 0;
   if (u > TOTAL_PAGES) u = TOTAL_PAGES;
-  flipbook.turn('page', u + 1);
+  var tp = u <= 0 ? 1 : u + 1;
+  flipbook.turn('page', tp);
+  preloadAround(Math.max(1, u));
 }
-
-function applyZoom() {
-  zoomLevel = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoomLevel));
-  $('#flipbook-wrap').css('transform', 'scale(' + zoomLevel + ')');
-  $('#zoomLabel').text(Math.round(zoomLevel * 100) + '%');
-}
-function zoomIn() { zoomLevel += ZOOM_STEP; applyZoom(); }
-function zoomOut() { zoomLevel -= ZOOM_STEP; applyZoom(); }
 
 $('#prevBtn').click(function() { goto(currentUserPage - 1); });
 $('#nextBtn').click(function() { goto(currentUserPage + 1); });
-$('#pageInput').change(function() {
+$('#pageInput').on('change keydown', function(e) {
+  if (e.type === 'keydown' && e.key !== 'Enter') return;
   var v = parseInt($(this).val()) || 1;
   if (v < 1) v = 1;
   if (v > TOTAL_PAGES) v = TOTAL_PAGES;
+  $(this).val(v);
   goto(v);
 });
 $('#zoomInBtn').click(zoomIn);
 $('#zoomOutBtn').click(zoomOut);
+$('#toggleThumbBtn').click(function() {
+  thumbVisible = !thumbVisible;
+  $('#thumbBar').toggleClass('hidden');
+  $(this).text(thumbVisible ? '⊞' : '⊟');
+  resizeBook();
+});
 
 $(document).keydown(function(e) {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); goto(currentUserPage + 1); }
   else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goto(currentUserPage - 1); }
-  else if (e.key === 'Home') { e.preventDefault(); goto(1); }
+  else if (e.key === 'Home') { e.preventDefault(); goto(0); }
   else if (e.key === 'End') { e.preventDefault(); goto(TOTAL_PAGES); }
   else if (e.key === '=' || e.key === '+') { e.preventDefault(); zoomIn(); }
   else if (e.key === '-') { e.preventDefault(); zoomOut(); }
-  else if (e.key === '0') { e.preventDefault(); zoomLevel = 1; applyZoom(); }
+  else if (e.key === '0') { e.preventDefault(); extraPanX = 0; extraPanY = 0; zoomLevel = 1; applyZoom(); }
 });
 
-/* ── Touch sendiri (gak pake turn.js) ── */
-var tx = 0, ty = 0, t0 = 0, pinching = false, lastPinch = 0, lastTap = 0;
+/* ── Zoom + Pan ── */
+var isPinching = false, lastPinchDist = 0, pinchCX = 0, pinchCY = 0;
+var dragStartX = 0, dragStartY = 0, dragPanX = 0, dragPanY = 0;
+var isDragging = false;
+var touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+var lastTapTime = 0;
+var isCornerTouch = false;
 
-document.addEventListener('touchstart', function(e) {
+var wrap = document.getElementById('flipbook-wrap');
+var inner = document.getElementById('flipbook-inner');
+
+function updateTransform() {
+  var tx = panX + extraPanX;
+  var ty = panY + extraPanY;
+  inner.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + zoomLevel + ')';
+}
+
+function applyZoom() {
+  zoomLevel = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoomLevel));
+  centerBook();
+  updateTransform();
+  $('#zoomLabel').text(Math.round(zoomLevel * 100) + '%');
+}
+
+function zoomIn() {
+  var rect = wrap.getBoundingClientRect();
+  zoomAround(rect.width / 2, rect.height / 2, ZOOM_STEP);
+}
+function zoomOut() {
+  var rect = wrap.getBoundingClientRect();
+  zoomAround(rect.width / 2, rect.height / 2, -ZOOM_STEP);
+}
+
+function zoomAround(cx, cy, delta) {
+  var oldZoom = zoomLevel, oldPanX = panX, oldPanY = panY;
+  zoomLevel = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoomLevel + delta));
+  centerBook();
+  var ratio = zoomLevel / oldZoom;
+  extraPanX = cx - panX - ratio * (cx - oldPanX - extraPanX);
+  extraPanY = cy - panY - ratio * (cy - oldPanY - extraPanY);
+  clampPan();
+  updateTransform();
+  $('#zoomLabel').text(Math.round(zoomLevel * 100) + '%');
+}
+
+function clampPan() {
+  var wrapRect = wrap.getBoundingClientRect();
+  var cont = document.getElementById('flipbook-container');
+  var cw = cont.offsetWidth || wrapRect.width;
+  var ch = cont.offsetHeight || wrapRect.height;
+  var sw = cw * zoomLevel;
+  var sh = ch * zoomLevel;
+  var maxX = Math.max(0, sw - wrapRect.width);
+  var maxY = Math.max(0, sh - wrapRect.height);
+  var limitX = Math.max(maxX / 2, 30);
+  var limitY = Math.max(maxY / 2, 30);
+  extraPanX = Math.max(-limitX, Math.min(limitX, extraPanX));
+  extraPanY = Math.max(-limitY, Math.min(limitY, extraPanY));
+}
+
+/* ── Mouse wheel ── */
+wrap.addEventListener('wheel', function(e) {
+  if (e.ctrlKey || e.metaKey) {
+    e.preventDefault();
+    var rect = wrap.getBoundingClientRect();
+    zoomAround(e.clientX - rect.left, e.clientY - rect.top, e.deltaY < 0 ? ZOOM_STEP : -ZOOM_STEP);
+  } else {
+    e.preventDefault();
+    var dx = e.deltaX, dy = e.deltaY;
+    if (e.shiftKey) { var t = dx; dx = dy; dy = t; }
+    extraPanX -= dx;
+    extraPanY -= dy;
+    clampPan();
+    updateTransform();
+  }
+}, { passive: false });
+
+/* ── Mouse drag ── */
+wrap.addEventListener('mousedown', function(e) {
+  if (e.button !== 0) return;
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  dragPanX = extraPanX;
+  dragPanY = extraPanY;
+  wrap.classList.add('panning');
+});
+document.addEventListener('mousemove', function(e) {
+  if (!isDragging) return;
+  extraPanX = dragPanX + (e.clientX - dragStartX);
+  extraPanY = dragPanY + (e.clientY - dragStartY);
+  clampPan();
+  updateTransform();
+});
+document.addEventListener('mouseup', function() {
+  if (!isDragging) return;
+  isDragging = false;
+  wrap.classList.remove('panning');
+});
+
+/* ── Touch events ── */
+function isNearCorner(x, y) {
+  var fb = document.getElementById('flipbook');
+  var r = fb.getBoundingClientRect();
+  var c = isMobile ? 50 : 80;
+  var left = r.left, right = r.left + r.width;
+  var top = r.top, bot = r.top + r.height;
+  return (x < left + c && y < top + c) ||
+         (x > right - c && y < top + c) ||
+         (x < left + c && y > bot - c) ||
+         (x > right - c && y > bot - c);
+}
+wrap.addEventListener('touchstart', function(e) {
+  isCornerTouch = false;
   if (e.touches.length === 1) {
-    tx = e.touches[0].clientX;
-    ty = e.touches[0].clientY;
-    t0 = Date.now();
-    pinching = false;
+    if (isNearCorner(e.touches[0].clientX, e.touches[0].clientY)) {
+      isCornerTouch = true; return;
+    }
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartTime = Date.now();
+    isPinching = false;
+    dragStartX = e.touches[0].clientX;
+    dragStartY = e.touches[0].clientY;
+    dragPanX = extraPanX; dragPanY = extraPanY;
   }
   if (e.touches.length === 2) {
-    pinching = true;
+    isPinching = true;
     var dx = e.touches[0].clientX - e.touches[1].clientX;
     var dy = e.touches[0].clientY - e.touches[1].clientY;
-    lastPinch = Math.sqrt(dx*dx + dy*dy);
+    lastPinchDist = Math.sqrt(dx*dx + dy*dy);
+    pinchCX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    pinchCY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
   }
-});
+}, { passive: true });
 
-document.addEventListener('touchmove', function(e) {
-  if (e.touches.length === 2 && pinching) {
+wrap.addEventListener('touchmove', function(e) {
+  if (e.touches.length === 2 && isPinching) {
     e.preventDefault();
     var dx = e.touches[0].clientX - e.touches[1].clientX;
     var dy = e.touches[0].clientY - e.touches[1].clientY;
     var d = Math.sqrt(dx*dx + dy*dy);
-    if (lastPinch > 0) {
-      zoomLevel *= 1 + (d - lastPinch) / lastPinch;
-      applyZoom();
+    var cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+    var cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+    if (lastPinchDist > 0) {
+      var oldZoom = zoomLevel, oldPanX = panX, oldPanY = panY;
+      zoomLevel *= d / lastPinchDist;
+      zoomLevel = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoomLevel));
+      centerBook();
+      var ratio = zoomLevel / oldZoom;
+      extraPanX = cx - panX - ratio * (cx - oldPanX - extraPanX);
+      extraPanY = cy - panY - ratio * (cy - oldPanY - extraPanY);
+      clampPan();
+      updateTransform();
+      $('#zoomLabel').text(Math.round(zoomLevel * 100) + '%');
     }
-    lastPinch = d;
+    lastPinchDist = d; pinchCX = cx; pinchCY = cy;
+  } else if (e.touches.length === 1 && !isPinching && !isCornerTouch) {
+    e.preventDefault();
+    extraPanX = dragPanX + (e.touches[0].clientX - dragStartX);
+    extraPanY = dragPanY + (e.touches[0].clientY - dragStartY);
+    clampPan();
+    updateTransform();
   }
-});
+}, { passive: false });
 
-document.addEventListener('touchend', function(e) {
-  if (e.changedTouches.length === 1 && !pinching) {
+wrap.addEventListener('touchend', function(e) {
+  if (e.changedTouches.length === 1 && !isPinching && !isCornerTouch) {
     var now = Date.now();
-    var dt = now - t0;
-    var dx = tx - e.changedTouches[0].clientX;
-    var dy = ty - e.changedTouches[0].clientY;
+    var dt = now - touchStartTime;
+    var dx = touchStartX - e.changedTouches[0].clientX;
+    var dy = touchStartY - e.changedTouches[0].clientY;
     var adx = Math.abs(dx), ady = Math.abs(dy);
 
-    // Double tap → reset zoom
-    if (adx < 25 && ady < 25 && dt < 300) {
-      if (now - lastTap < 300) {
-        zoomLevel = 1; applyZoom();
-        lastTap = 0;
-        return;
+    if (adx < 20 && ady < 20 && dt < 300) {
+      if (now - lastTapTime < 300) {
+        extraPanX = 0; extraPanY = 0; zoomLevel = 1; applyZoom();
+        lastTapTime = 0; return;
       }
-      lastTap = now;
-      return;
+      lastTapTime = now; return;
     }
 
-    if (adx > ady && adx > 30) {
-      // Swipe
-      if (dx > 0) goto(currentUserPage + 1);
-      else goto(currentUserPage - 1);
-    } else if (adx < 20 && ady < 20 && dt < 500) {
-      // Tap: kiri = prev, kanan = next
+    if (zoomLevel <= 1 && adx > ady && adx > 30 && dt < 400) {
+      if (dx > 0) goto(currentUserPage - 1);
+      else goto(currentUserPage + 1);
+    } else if (zoomLevel <= 1 && adx < 20 && ady < 20 && dt < 500) {
       var x = e.changedTouches[0].clientX;
       var third = window.innerWidth / 3;
       if (x < third) goto(currentUserPage - 1);
       else if (x > third * 2) goto(currentUserPage + 1);
     }
   }
-  if (e.touches.length < 2) { pinching = false; lastPinch = 0; }
-});
+  if (e.touches.length < 2) { isPinching = false; lastPinchDist = 0; }
+}, { passive: true });
 
-$('#flipbook-wrap').on('wheel', function(e) {
-  if (e.ctrlKey || e.metaKey) {
-    e.preventDefault();
-    if (e.originalEvent.deltaY < 0) zoomIn(); else zoomOut();
-  }
-});
-
-var rt;
 $(window).resize(function() {
-  clearTimeout(rt);
-  rt = setTimeout(function() { resizeBook(); applyZoom(); }, 150);
+  isMobile = window.innerWidth < 768;
+  if (resizeRAF) cancelAnimationFrame(resizeRAF);
+  resizeRAF = requestAnimationFrame(function() {
+    resizeBook();
+  });
 });
 
+/* ── Thumbnail bar ── */
 var tb = $('#thumbBar');
 for (var i = 1; i <= TOTAL_PAGES; i++)
-  tb.append('<img src="' + imgSrc(i) + '" data-page="' + i + '" alt="">');
+  tb.append('<img src="' + imgSrc(i) + '" data-page="' + i + '" alt="" loading="lazy">');
 tb.on('click', 'img', function() { goto(parseInt($(this).data('page'))); });
 
 $('#totalLabel').text(TOTAL_PAGES);
 build();
 initFB();
+
+setTimeout(function() { $('#loading').addClass('hidden'); }, 300);
+preloadAround(1);
 </script>
 </body>
 </html>
