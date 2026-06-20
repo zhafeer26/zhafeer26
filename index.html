@@ -272,7 +272,8 @@ html, body {
   transform: translateY(100%);
 }
 .thumbnail-bar::-webkit-scrollbar { display: none; }
-.thumbnail-bar img {
+.thumbnail-bar img,
+.thumbnail-bar .thumb-empty {
   height: 58px;
   cursor: pointer;
   border: 2px solid transparent;
@@ -282,8 +283,10 @@ html, body {
   transition: all 0.25s ease;
   filter: grayscale(0.4);
 }
-.thumbnail-bar img:hover { opacity: 0.85; filter: grayscale(0.1); }
-.thumbnail-bar img.active {
+.thumbnail-bar img:hover,
+.thumbnail-bar .thumb-empty:hover { opacity: 0.85; filter: grayscale(0.1); }
+.thumbnail-bar img.active,
+.thumbnail-bar .thumb-empty.active {
   border-color: #ffb347;
   opacity: 1;
   filter: grayscale(0);
@@ -402,15 +405,25 @@ var thumbVisible = true;
 var resizeRAF;
 
 function imgSrc(n) {
+  if (n < 1) return '';
   return 'pages/page-' + String(n).padStart(3, '0') + '.jpg';
 }
 
+function contentImg(u) {
+  /* user page 1 = blank, page 2 = image 1, page 3 = image 2, ... */
+  if (u <= 1) return '';
+  return imgSrc(u - 1);
+}
+
 function preloadAround(p) {
-  var start = Math.max(1, p - 2);
+  var start = Math.max(2, p - 2);
   var end = Math.min(TOTAL_PAGES, p + 3);
   for (var i = start; i <= end; i++) {
-    var img = new Image();
-    img.src = imgSrc(i);
+    var src = contentImg(i);
+    if (src) {
+      var img = new Image();
+      img.src = src;
+    }
   }
 }
 
@@ -451,8 +464,13 @@ function resizeBook() {
 function build() {
   var h = '';
   h += '<div class="page cover-page" style="background:linear-gradient(145deg,#4a3022,#1e110c)"><div class="cover-icon">📖</div><h2>Album Zhafeer 26</h2><div class="divider"></div><span class="sub">Album Kenangan</span></div>';
-  for (var i = 1; i <= TOTAL_PAGES; i++)
-    h += '<div class="page"><img src="' + imgSrc(i) + '" alt="Hal ' + i + '" loading="lazy" onerror="this.style.display=\'none\'"></div>';
+  for (var i = 1; i <= TOTAL_PAGES; i++) {
+    if (i === 1) {
+      h += '<div class="page" style="background:#fff"></div>';
+    } else {
+      h += '<div class="page"><img src="' + contentImg(i) + '" alt="Hal ' + i + '" loading="lazy" onerror="this.style.display=\'none\'"></div>';
+    }
+  }
   h += '<div class="page cover-page back-cover" style="background:linear-gradient(145deg,#1e110c,#4a3022)"><div class="cover-icon">❤️</div><h2>Album Zhafeer 26</h2><div class="divider"></div><span class="sub">Terima Kasih</span></div>';
   flipbook.html(h);
 }
@@ -503,11 +521,10 @@ function updateUI(u) {
   var display = getDisplayPage(u);
   $('#prevBtn').prop('disabled', u <= 0);
   $('#nextBtn').prop('disabled', u >= TOTAL_PAGES);
-  $('#thumbBar img').removeClass('active');
+  $('#thumbBar .active').removeClass('active');
   var thumbPage = Math.max(1, u);
-  $('#thumbBar img[data-page="' + thumbPage + '"]').addClass('active');
-  var el = $('#thumbBar img[data-page="' + thumbPage + '"]')[0];
-  if (el) el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  var el = $('#thumbBar [data-page="' + thumbPage + '"]').addClass('active');
+  if (el[0]) el[0].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
 }
 
 function goto(u) {
@@ -752,9 +769,14 @@ $(window).resize(function() {
 
 /* ── Thumbnail bar ── */
 var tb = $('#thumbBar');
-for (var i = 1; i <= TOTAL_PAGES; i++)
-  tb.append('<img src="' + imgSrc(i) + '" data-page="' + i + '" alt="" loading="lazy">');
-tb.on('click', 'img', function() { goto(parseInt($(this).data('page'))); });
+for (var i = 1; i <= TOTAL_PAGES; i++) {
+  if (i === 1) {
+    tb.append('<div class="thumb-empty" data-page="1" style="width:40px;height:58px;background:#fff;border-radius:4px;flex-shrink:0;cursor:pointer;border:2px solid transparent" title="Kosong"></div>');
+  } else {
+    tb.append('<img src="' + contentImg(i) + '" data-page="' + i + '" alt="" loading="lazy">');
+  }
+}
+tb.on('click', 'img, .thumb-empty', function() { goto(parseInt($(this).data('page'))); });
 
 $('#totalLabel').text(TOTAL_PAGES);
 build();
